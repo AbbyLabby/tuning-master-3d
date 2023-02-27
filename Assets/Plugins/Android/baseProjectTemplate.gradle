@@ -1,0 +1,74 @@
+allprojects {
+	buildscript {
+		repositories {**ARTIFACTORYREPOSITORY**
+			mavenCentral()
+			google()
+			maven {
+				url "https://artifactory.boombit.com/artifactory/libs-release"
+			}
+			maven {
+				url "https://android-sdk.is.com/"
+			}
+			maven {
+				url "https://jitpack.io"
+			}
+			maven {
+				url "https://s3.amazonaws.com/smaato-sdk-releases"
+			}
+			maven {
+				url "https://sdk.tapjoy.com/"
+			}
+			maven {
+				url "https://artifact.bytedance.com/repository/pangle"
+			}
+			maven {
+				url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+			}
+			maven {
+				url "https://maven.ogury.co"
+			}
+		}
+		
+		dependencies {
+			classpath 'com.android.tools.build:gradle:4.0.1'
+		**BUILD_SCRIPT_DEPS**
+		}
+	}
+	
+	repositories {**ARTIFACTORYREPOSITORY**
+		mavenCentral()
+		google()
+		flatDir {
+			dirs "${project(':unityLibrary').projectDir}/libs"
+		}
+		maven {
+			url "https://artifactory.boombit.com/artifactory/libs-release"
+		}
+		maven {
+			url "https://android-sdk.is.com/"
+		}
+		maven {
+			url "https://jitpack.io"
+		}
+		maven {
+			url "https://s3.amazonaws.com/smaato-sdk-releases"
+		}
+		maven {
+			url "https://sdk.tapjoy.com/"
+		}
+		maven {
+			url "https://artifact.bytedance.com/repository/pangle"
+		}
+		maven {
+			url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+		}
+		maven {
+			url "https://maven.ogury.co"
+		}
+	}
+	
+}
+
+task clean(type: Delete) {
+	delete rootProject.buildDir
+}

@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion **APIVERSION**
+	buildToolsVersion '**BUILDTOOLS**'
+	
+	defaultConfig {
+		minSdkVersion **MINSDKVERSION**
+		targetSdkVersion **TARGETSDKVERSION**
+		versionCode **VERSIONCODE**
+		versionName '**VERSIONNAME**'
+		applicationId '**APPLICATIONID**'
+		multiDexEnabled true
+		ndk {
+			abiFilters **ABIFILTERS**
+		}
+	}
+	
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}**SIGN**
+	
+	lintOptions {
+		abortOnError false
+	}
+	
+	aaptOptions {
+		noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
+		ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+	}
+	
+	buildTypes {
+		debug {
+			minifyEnabled **MINIFY_DEBUG**
+			proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
+			jniDebuggable true
+		}
+		release {
+			minifyEnabled **MINIFY_RELEASE**
+			proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
+		}
+	}
+	
+	**PACKAGING_OPTIONS****PLAY_ASSET_PACKS****SPLITS**
+**BUILT_APK_LOCATION**
+	bundle {
+		language {
+			enableSplit = false
+		}
+		density {
+			enableSplit = false
+		}
+		abi {
+			enableSplit = true
+		}
+	}
+}
+**SPLITS_VERSION_CODE**
+**LAUNCHER_SOURCE_BUILD_SETUP**
+
+dependencies {
+	implementation(group: 'com.android.support', name: 'multidex', version: '1.0.3')
+	implementation project(':unityLibrary')
+}
+
